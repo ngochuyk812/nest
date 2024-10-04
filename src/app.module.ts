@@ -6,6 +6,7 @@ import { FuturesService } from './futures/futures.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CRUDService } from './shared/crud/crud.service';
 import { BuyEntity } from './models/buy.entity';
+import { BuyService } from './futures/buy.service';
 
 @Module({
   imports: [
@@ -15,9 +16,9 @@ import { BuyEntity } from './models/buy.entity';
       entities: [BuyEntity],
       synchronize: true,
    }),
-   TypeOrmModule.forFeature([BuyEntity])
+   TypeOrmModule.forFeature([BuyEntity]),
   ],
   controllers: [AppController, FuturesController],
-  providers: [AppService, FuturesService],
+  providers: [AppService, FuturesService, BuyService],
 })
 export class AppModule {}

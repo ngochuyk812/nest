@@ -6,11 +6,12 @@ import { CRUDService } from 'src/shared/crud/crud.service';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class FuturesService {
-    async ping(): Promise<TradeResult[]> {
-        const client = Binance();
-        const data = await client.futuresTrades({ symbol: 'BTCUSDT' });
-        return data;
+export class BuyService extends CRUDService<BuyEntity>{
+    constructor(
+        @InjectRepository(BuyEntity)
+        protected readonly repository: Repository<BuyEntity>,
+    ) {
+        super(repository); 
     }
+    
 }
-
